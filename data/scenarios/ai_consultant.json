@@ -1,0 +1,44 @@
+[
+  {
+    "id": "AIC-001",
+    "role_id": "ai_consultant",
+    "role_name": "AI Consultant",
+    "domain": "AI Strategy, Value Opportunity & Use-Case Prioritization",
+    "difficulty": "Senior / Managing Consultant",
+    "title": "Overcoming Executive 'AI Hype' and Prioritizing High-ROI Business Use Cases",
+    "context": "The CEO of a traditional manufacturing company demands that the organization 'build an internal ChatGPT for everything' within 90 days. The leadership team is confused and IT leadership reports zero infrastructure readiness.",
+    "dilemma": "How do you re-orient C-suite expectations toward structured AI opportunity mapping and tangible ROI value drivers without losing client momentum?",
+    "eval_rubric": {
+      "key_competencies": ["C-Suite Stakeholder Advisory", "AI Value Framework (Feasibility vs Impact Matrix)", "Business ROI Modeling", "Change Management"],
+      "must_include": ["2x2 Value vs Complexity Matrix", "Cost-Benefit & TCO Analysis", "Pilot MVP roadmap (Quick Win vs Strategic Foundation)", "AI Readiness Scorecard"],
+      "common_pitfalls": ["Agreeing to a vague 'do everything' mandate", "Shutting down executive enthusiasm without presenting alternative actionable options"]
+    },
+    "star_model_answer": {
+      "situation": "A manufacturing CEO demanded a company-wide internal ChatGPT without clear business goals or data readiness.",
+      "task": "Consult the executive leadership team to establish a focused, high-ROI AI transformation roadmap.",
+      "action": "I conducted a 2-week AI Readiness Assessment interviewing 15 business unit leaders. I mapped 12 proposed ideas onto a 2x2 Impact vs Feasibility Matrix. I recommended pivoting from a generic internal chat tool to two high-value pilots: 1) Automated RFQ processing for sales, and 2) Maintenance manual RAG search for shop floor technicians.",
+      "result": "The CEO approved the revised roadmap. The technician RAG pilot reduced equipment repair downtime by 28%, delivering a $1.2M annual ROI in the first 6 months."
+    }
+  },
+  {
+    "id": "AIC-002",
+    "role_id": "ai_consultant",
+    "role_name": "AI Consultant",
+    "domain": "Vendor Evaluation & Open-Source vs Proprietary Build/Buy Decisions",
+    "difficulty": "Senior Consultant",
+    "title": "Advising a Healthcare Provider on Proprietary LLM API vs On-Prem Open Source Models",
+    "context": "A regional hospital network wants to implement AI patient intake summaries. The board is divided between buying OpenAI Enterprise ($500k/yr) or building an on-premise Llama-3 deployment ($800k upfront hardware cost).",
+    "dilemma": "How do you deliver an objective Build vs Buy cost-benefit trade-off analysis addressing HIPAA compliance, latency, operational maintenance, and long-term TCO?",
+    "eval_rubric": {
+      "key_competencies": ["Build vs Buy Decision Modeling", "Total Cost of Ownership (TCO)", "Healthcare Compliance (HIPAA / BAA)", "Risk Management"],
+      "must_include": ["HIPAA BAA (Business Associate Agreement) verification", "3-Year TCO breakdown (hardware amortization + MLOps staff vs API token pricing)", "Data sovereignty & security governance", "hybrid model recommendation"],
+      "common_pitfalls": ["Failing to factor in MLOps maintenance engineer salaries for on-premise builds", "Ignoring HIPAA compliance requirements for API vendors"]
+    },
+    "star_model_answer": {
+      "situation": "A healthcare provider was stuck in an executive stalemate over building on-premise open-source LLMs vs buying cloud LLM subscriptions.",
+      "task": "Perform a comprehensive TCO and compliance consulting evaluation.",
+      "action": "I developed a 3-year TCO financial model evaluating API token growth, MLOps staffing overhead, GPU hardware depreciation, and HIPAA compliance risk. I demonstrated that cloud API with HIPAA BAA was 60% cheaper for Year 1-2, but recommended a hybrid pathway: Cloud API for non-sensitive data now, transitioning to specialized fine-tuned open-source models once volume justified hardware investment.",
+      "result": "Unanimous board approval of the phased hybrid strategy, saving $450k in upfront capital expenditure."
+    }
+  }
+]

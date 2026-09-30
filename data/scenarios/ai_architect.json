@@ -1,0 +1,44 @@
+[
+  {
+    "id": "AIA-001",
+    "role_id": "ai_architect",
+    "role_name": "AI Architect",
+    "domain": "Enterprise AI System Design & Multi-Agent Architecture",
+    "difficulty": "Principal / Lead Architect",
+    "title": "Architecting a Multi-Agent Autonomous Workflow for Global Supply Chain Risk Mitigation",
+    "context": "A global logistics provider wants an autonomous AI system that monitors weather feeds, port congestion news, and supplier inventory, and automatically re-routes shipments when risk thresholds are breached.",
+    "dilemma": "How do you architect a multi-agent state machine (e.g., LangGraph / CrewAI) with Human-in-the-Loop (HITL) fallback, deterministic transactional execution, and zero infinite-loop failure modes?",
+    "eval_rubric": {
+      "key_competencies": ["Multi-Agent System Design (LangGraph)", "Human-in-the-Loop (HITL) State Machine", "Event-Driven Architecture", "Fail-Safe & Idempotency"],
+      "must_include": ["State Machine graph with explicit transition conditions", "HITL approval gateway for high-cost re-routings", "Circuit breaker & retry idempotency pattern", "Telemetry & audit trail logging"],
+      "common_pitfalls": ["Designing a single monolithic prompt agent", "Allowing unvalidated autonomous agent execution of high-value monetary transactions"]
+    },
+    "star_model_answer": {
+      "situation": "A global supply chain client required an AI agent system to detect supply disruption risks and execute shipment re-routing automatically.",
+      "task": "Design a resilient, multi-agent enterprise architecture with strict safety and transactional guarantees.",
+      "action": "I designed a cyclic graph architecture using LangGraph featuring specialized agents: Monitoring Agent, Impact Evaluator Agent, and Action Execution Agent. I incorporated a Human-in-the-Loop approval node whenever rerouting cost exceeded $10,000, implemented event-driven Kafka messaging, and added state checkpointing in PostgreSQL for full auditability.",
+      "result": "The architecture successfully automated 78% of routine disruption mitigation without human intervention while guaranteeing zero unauthorized financial execution."
+    }
+  },
+  {
+    "id": "AIA-002",
+    "role_id": "ai_architect",
+    "role_name": "AI Architect",
+    "domain": "Enterprise Data Privacy, Guardrails & Security Architecture",
+    "difficulty": "Principal Architect",
+    "title": "Preventing PII Leakage & Prompt Injection in Banking AI Customer Assistant",
+    "context": "A tier-1 retail bank is building an AI financial advisor. Security auditors flag extreme risks of Prompt Injection (Direct & Indirect) and unauthorized PII exposure to third-party LLM APIs.",
+    "dilemma": "How do you design an enterprise-grade AI Firewall & Guardrail Gateway architecture between the client application and LLM providers?",
+    "eval_rubric": {
+      "key_competencies": ["AI Security & Privacy Architecture", "Guardrails Infrastructure (NeMo Guardrails / Guardrails AI)", "Data Anonymization & Tokenization", "Zero Trust AI"],
+      "must_include": ["Inbound PII masking/tokenization proxy before API call", "Outbound response validation & deanonymization layer", "Prompt Injection classifier (e.g., DeBERTa-v3 guardrail model)", "Role-Based Access Control (RBAC) tied to vector retrieval"],
+      "common_pitfalls": ["Relying solely on LLM system prompt instructions for PII safety", "Storing raw customer data in vector embeddings without encryption"]
+    },
+    "star_model_answer": {
+      "situation": "Security auditors halted a bank's AI advisor launch due to vulnerabilities to prompt injection and potential PII leak to cloud APIs.",
+      "task": "Architect an enterprise AI Security Gateway enforcing Zero Trust privacy and threat detection.",
+      "action": "I architected an inline AI Gateway featuring a dual-pass filter: 1) Presidio PII Anonymizer that tokenizes SSNs and account numbers before leaving the network, 2) NeMo Guardrail pipeline running a fine-tuned BERT prompt-injection classifier, and 3) Vector store RBAC filtering matching user JWT permissions.",
+      "result": "Passed 100% of third-party red-team penetration tests, achieved SOC2 & GDPR compliance approval, and enabled secure production launch."
+    }
+  }
+]

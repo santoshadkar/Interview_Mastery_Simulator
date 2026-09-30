@@ -1,0 +1,44 @@
+[
+  {
+    "id": "AIE-001",
+    "role_id": "ai_engineer",
+    "role_name": "AI Engineer",
+    "domain": "RAG Optimization & Vector Search Drift",
+    "difficulty": "Senior",
+    "title": "Severe RAG Hallucination Spike Following Knowledge Base Update",
+    "context": "A customer support enterprise RAG pipeline deployed with a vector database (Pinecone/Qdrant) starts returning incorrect policy answers after ingesting 5,000 new unstructured PDF policy documents.",
+    "dilemma": "How do you systematically diagnose whether the hallucination is caused by chunking strategy, vector embedding distance metrics, top-k retrieval noise, or LLM system prompt weakness?",
+    "eval_rubric": {
+      "key_competencies": ["RAG Architecture", "RAG Triad Evaluation (Context Relevance, Groundedness, Answer Relevance)", "Vector Indexing & Chunking", "Prompt Engineering"],
+      "must_include": ["Evaluating RAG Triad with TruLens or Ragas", "Semantic chunking & metadata filtering", "Re-ranking models (Cohere / BGE-reranker)", "Hybrid BM25 + Vector Search"],
+      "common_pitfalls": ["Increasing LLM temperature", "Assuming vector database is broken without automated eval pipeline"]
+    },
+    "star_model_answer": {
+      "situation": "A production enterprise RAG system experienced a 22% spike in hallucinated customer support answers after a document refresh.",
+      "task": "Diagnose root cause and restore RAG precision to >95%.",
+      "action": "I deployed an automated Ragas evaluation pipeline to measure Groundedness and Context Relevance separately. The data showed low Context Relevance due to naive 1000-token fixed chunking splitting tables. I refactored to semantic markdown chunking, introduced a hybrid BM25 + Vector retrieval with a Cross-Encoder re-ranker, and added strict groundedness system prompts.",
+      "result": "Groundedness accuracy reached 97.4%, latency remained under 600ms, and customer support escalation tickets fell by 40%."
+    }
+  },
+  {
+    "id": "AIE-002",
+    "role_id": "ai_engineer",
+    "role_name": "AI Engineer",
+    "domain": "LLM Fine-Tuning vs Prompting & Quantization",
+    "difficulty": "Senior",
+    "title": "Latency vs Accuracy Bottleneck in High-Throughput Real-Time Call Summarization",
+    "context": "A call center application processes 50,000 call transcripts per hour. Using GPT-4o API costs $40,000/month and introduces a 3.5-second latency per call. The business demands cost reduction by 80% and sub-1-second latency.",
+    "dilemma": "How do you design a fine-tuning or distillation strategy using open-source models (e.g., Llama 3.1 8B / Mistral) with QLoRA and vLLM inference backend to meet performance targets?",
+    "eval_rubric": {
+      "key_competencies": ["Model Fine-Tuning (LoRA / QLoRA)", "Inference Acceleration (vLLM, TensorRT-LLM)", "Model Distillation", "Cost Optimization"],
+      "must_include": ["Dataset curation & GPT-4o teacher distillation", "QLoRA fine-tuning on Llama-3.1-8B-Instruct", "vLLM / AWQ quantization deployment", "Evaluation against gold benchmark dataset"],
+      "common_pitfalls": ["Overfitting on small dataset", "Ignoring hardware memory bandwidth limits (VRAM)"]
+    },
+    "star_model_answer": {
+      "situation": "High API cost ($40k/mo) and latency (3.5s) on GPT-4o threatened call center AI product viability.",
+      "task": "Deliver sub-1s latency and 80%+ cost savings while maintaining summarization quality.",
+      "action": "I curated 5,000 high-quality GPT-4o call summaries as a distillation dataset. I fine-tuned Llama-3.1-8B using QLoRA on 2x A10G GPUs, quantized the model to INT4 using AWQ, and deployed it on vLLM with PagedAttention.",
+      "result": "Latency dropped to 420ms (88% reduction), API costs plummeted by 84%, and blind human evaluations showed zero statistically significant drop in summary quality."
+    }
+  }
+]

@@ -1,0 +1,238 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Scenario-Based Interview Simulation Portal API",
+    "description": "API specification for scenario management, candidate answer evaluation, interactive mock interviewer engine, and readiness tracking across 8 Agile and AI roles.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000/api/v1",
+      "description": "Local Simulation Server"
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health Check Endpoint",
+        "responses": {
+          "200": {
+            "description": "API status online",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string", "example": "ok" },
+                    "timestamp": { "type": "string" },
+                    "total_scenarios": { "type": "integer" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/roles": {
+      "get": {
+        "summary": "Get list of supported roles and track metadata",
+        "responses": {
+          "200": {
+            "description": "List of 8 roles with scenario counts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RoleSummary"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/scenarios": {
+      "get": {
+        "summary": "Query scenario databank with filters",
+        "parameters": [
+          { "name": "role", "in": "query", "required": false, "schema": { "type": "string" } },
+          { "name": "difficulty", "in": "query", "required": false, "schema": { "type": "string" } },
+          { "name": "keyword", "in": "query", "required": false, "schema": { "type": "string" } },
+          { "name": "limit", "in": "query", "required": false, "schema": { "type": "integer", "default": 20 } },
+          { "name": "offset", "in": "query", "required": false, "schema": { "type": "integer", "default": 0 } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated list of matching scenarios",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": { "type": "integer" },
+                    "scenarios": {
+                      "type": "array",
+                      "items": { "$ref": "#/components/schemas/Scenario" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/scenarios/{scenario_id}": {
+      "get": {
+        "summary": "Get full scenario details by ID",
+        "parameters": [
+          { "name": "scenario_id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Scenario detail object",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ScenarioDetail" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/evaluate": {
+      "post": {
+        "summary": "Evaluate candidate response against scenario rubric",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["scenario_id", "user_response"],
+                "properties": {
+                  "scenario_id": { "type": "string" },
+                  "user_response": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Detailed evaluation report",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EvaluationResult" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stats": {
+      "get": {
+        "summary": "Get aggregate system and candidate session metrics",
+        "responses": {
+          "200": {
+            "description": "Global statistics overview",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total_roles": { "type": "integer" },
+                    "total_scenarios": { "type": "integer" },
+                    "scenarios_by_role": { "type": "object" },
+                    "average_readiness_score": { "type": "number" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RoleSummary": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "track": { "type": "string", "enum": ["Agile", "AI"] },
+          "count": { "type": "integer" },
+          "icon": { "type": "string" },
+          "description": { "type": "string" }
+        }
+      },
+      "Scenario": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "role_id": { "type": "string" },
+          "role_name": { "type": "string" },
+          "title": { "type": "string" },
+          "domain": { "type": "string" },
+          "difficulty": { "type": "string" }
+        }
+      },
+      "ScenarioDetail": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "role_id": { "type": "string" },
+          "role_name": { "type": "string" },
+          "title": { "type": "string" },
+          "domain": { "type": "string" },
+          "difficulty": { "type": "string" },
+          "context": { "type": "string" },
+          "dilemma": { "type": "string" },
+          "eval_rubric": {
+            "type": "object",
+            "properties": {
+              "key_competencies": { "type": "array", "items": { "type": "string" } },
+              "must_include": { "type": "array", "items": { "type": "string" } },
+              "common_pitfalls": { "type": "array", "items": { "type": "string" } }
+            }
+          },
+          "star_model_answer": {
+            "type": "object",
+            "properties": {
+              "situation": { "type": "string" },
+              "task": { "type": "string" },
+              "action": { "type": "string" },
+              "result": { "type": "string" }
+            }
+          }
+        }
+      },
+      "EvaluationResult": {
+        "type": "object",
+        "properties": {
+          "scenario_id": { "type": "string" },
+          "overall_score": { "type": "integer" },
+          "star_alignment": {
+            "type": "object",
+            "properties": {
+              "situation_covered": { "type": "boolean" },
+              "task_covered": { "type": "boolean" },
+              "action_covered": { "type": "boolean" },
+              "result_covered": { "type": "boolean" }
+            }
+          },
+          "competencies_matched": { "type": "array", "items": { "type": "string" } },
+          "key_points_matched": { "type": "array", "items": { "type": "string" } },
+          "missed_key_points": { "type": "array", "items": { "type": "string" } },
+          "detected_pitfalls": { "type": "array", "items": { "type": "string" } },
+          "feedback_summary": { "type": "string" },
+          "recommendations": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}

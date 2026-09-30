@@ -1,0 +1,44 @@
+[
+  {
+    "id": "RTE-001",
+    "role_id": "release_train_engineer",
+    "role_name": "Release Train Engineer",
+    "domain": "SAFe PI Planning Facilitation & ROAM Risk Management",
+    "difficulty": "Senior / Executive",
+    "title": "Unresolved Un-owned Critical Dependencies 1 Hour Before Final Plan Review",
+    "context": "During Day 2 of PI Planning for a 150-person Agile Release Train, 3 teams discover an uncommitted dependency on the Enterprise Security ART. Security leads state they have zero capacity in PI-1.",
+    "dilemma": "How do you facilitate ROAM risk resolution and secure executive alignment before final commitment?",
+    "eval_rubric": {
+      "key_competencies": ["ROAM Management (Resolved, Owned, Accepted, Mitigated)", "PI Planning Leadership", "Executive Escalation & Business Owners Alignment"],
+      "must_include": ["ROAMing the dependency risk publicly", "Business Owner tradeoff discussion", "Scope de-scoping or capacity reallocation options"],
+      "common_pitfalls": ["Sweeping the dependency under the rug", "Forcing teams to commit to impossible delivery timelines"]
+    },
+    "star_model_answer": {
+      "situation": "1 hour before final PI plan review, 3 teams faced an uncommitted dependency on an over-capacity Security ART.",
+      "task": "As RTE, facilitate risk resolution and maintain ART confidence rating.",
+      "action": "I brought the Business Owners, System Architect, and Security Lead into an impromptu management review session. We ROAMed the risk: 'Owned' by the Security VP, and 'Mitigated' by shifting non-essential reporting features out of PI-1 to free up security review bandwidth.",
+      "result": "The plan was adjusted safely, dependencies were committed with owner sign-off, and confidence vote scored 4.2 out of 5."
+    }
+  },
+  {
+    "id": "RTE-002",
+    "role_id": "release_train_engineer",
+    "role_name": "Release Train Engineer",
+    "domain": "ART Execution & Flow Velocity Metrics",
+    "difficulty": "Senior",
+    "title": "ART Predictability Index Drops Below 60% across 3 Consecutive Sprints",
+    "context": "An ART of 10 teams is suffering from severe scope churn. System Demos are missing key features, and Sprint commitments are consistently missed due to mid-sprint emergency work injected by product managers.",
+    "dilemma": "How do you restore ART flow predictability and enforce SAFe execution discipline?",
+    "eval_rubric": {
+      "key_competencies": ["ART Predictability Index", "Inspect & Adapt (I&A)", "Flow Metrics", "Relentless Improvement"],
+      "must_include": ["System Demo audit", "Problem Solving Workshop in I&A", "Enforcing Sprint Guardrails & Capacity Allocation"],
+      "common_pitfalls": ["Blaming engineering developers", "Ignoring scope churn root causes"]
+    },
+    "star_model_answer": {
+      "situation": "ART predictability fell to 54% due to uncontrolled scope injection.",
+      "task": "Analyze root cause and coach PO sync and System Demos to restore delivery predictable flow.",
+      "action": "I facilitated an Inspect & Adapt Problem-Solving Workshop using 5-Whys. We identified un-vetted feature injection as the primary cause. I established strict PO Sync guardrails, requiring Business Owner approval for mid-PI feature swaps.",
+      "result": "ART Predictability Index recovered to 88% within 2 sprints, and System Demo attendance increased by 50%."
+    }
+  }
+]

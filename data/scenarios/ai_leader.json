@@ -1,0 +1,44 @@
+[
+  {
+    "id": "AIL-001",
+    "role_id": "ai_leader",
+    "role_name": "AI Leader / VP of AI",
+    "domain": "Responsible AI Governance & Global Regulatory Compliance",
+    "difficulty": "Executive / VP",
+    "title": "Navigating EU AI Act Compliance Mandates for High-Risk Automated Hiring Algorithms",
+    "context": "You are VP of AI at an enterprise HR tech company. The EU AI Act takes full effect, classifying your candidate screening and scoring engine as a 'High-Risk AI System'. Regulators demand strict audit trails, bias mitigation, and human oversight guarantees under penalty of heavy fines.",
+    "dilemma": "How do you restructure the enterprise AI governance committee, algorithm audit process, and engineering pipelines without freezing current product revenue streams?",
+    "eval_rubric": {
+      "key_competencies": ["Executive AI Governance", "Regulatory Compliance (EU AI Act, NIST AI RMF)", "Algorithmic Bias Mitigation", "Risk Management & Ethics"],
+      "must_include": ["Establishing a cross-functional AI Ethics & Compliance Board", "Third-party algorithmic bias auditing (Disparate Impact ratio)", "Human-in-the-Loop override workflow", "Conformity assessment & technical documentation process"],
+      "common_pitfalls": ["Disregarding regulatory deadlines", "Shutting down products completely out of fear"]
+    },
+    "star_model_answer": {
+      "situation": "The EU AI Act designated our core candidate screening AI system as High-Risk, requiring immediate compliance transformation.",
+      "task": "As VP of AI, establish compliant AI governance and technical validation to maintain EU market access.",
+      "action": "I instituted an AI Ethics & Governance Board with Legal, Engineering, and Product leads. I mandated independent third-party bias audits, refactored our model training pipeline to enforce equalized odds metric thresholds, and implemented a mandatory Human-in-the-Loop verification gate for all candidate rejection recommendations.",
+      "result": "Achieved full EU AI Act conformity certification 3 months ahead of deadline, preserving $18M in European annual recurring revenue."
+    }
+  },
+  {
+    "id": "AIL-002",
+    "role_id": "ai_leader",
+    "role_name": "AI Leader / VP of AI",
+    "domain": "AI Talent Scaling, Organization Design & Budget Allocation",
+    "difficulty": "Executive / VP",
+    "title": "Structuring an Enterprise AI Organization: Centralized AI Center of Excellence vs Embedded Squads",
+    "context": "An enterprise with 5,000 employees has scattered AI shadow projects across marketing, engineering, and finance. High turnover in AI talent is caused by lack of career ladders, and infrastructure costs are spiraling due to duplicate GPU cloud instances.",
+    "dilemma": "How do you design a hybrid Hub-and-Spoke AI organizational model, establish shared infrastructure guardrails, and retain elite AI talent?",
+    "eval_rubric": {
+      "key_competencies": ["Organizational Architecture", "AI Center of Excellence (CoE)", "Talent Management & Career Pathways", "Enterprise Budget Optimization"],
+      "must_include": ["Hub-and-Spoke organizational structure", "Centralized platform infrastructure (MLOps / Data Platform)", "Standardized AI tooling & token budgeting", "AI career ladders (Research Scientist vs MLOps Engineer vs Product AI)"],
+      "common_pitfalls": ["Over-centralizing AI and creating an ivory tower disconnected from business units", "Leaving shadow AI completely ungoverned"]
+    },
+    "star_model_answer": {
+      "situation": "Disorganized shadow AI initiatives across business units caused $2M in redundant GPU expenses and high AI engineer turnover.",
+      "task": "Re-architect the enterprise AI organization for scale, operational governance, and talent retention.",
+      "action": "I designed and executed a Hub-and-Spoke AI organizational model. The Hub (AI CoE) manages core infrastructure, MLOps tooling, security guardrails, and career frameworks, while Spoke AI engineers are embedded directly into business unit product squads to drive localized domain impact.",
+      "result": "Infrastructure costs decreased by 35% through shared resource pool management, AI talent retention increased by 85%, and feature deployment velocity doubled."
+    }
+  }
+]

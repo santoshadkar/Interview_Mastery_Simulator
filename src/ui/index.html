@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scenario-Based Interview Simulation Portal (Agile & AI)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --accent-purple: #8b5cf6;
+      --accent-blue: #3b82f6;
+      --accent-cyan: #06b6d4;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.25rem;
+      background: linear-gradient(90deg, #c084fc, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .logo-badge {
+      background: rgba(139, 92, 246, 0.2);
+      border: 1px solid rgba(139, 92, 246, 0.4);
+      color: #c084fc;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    /* Track Group Header */
+    .track-section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Dedicated Role Tabs Bar */
+    .role-tabs-bar {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--card-border);
+      scrollbar-width: thin;
+    }
+
+    .role-tab {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 10px 18px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .role-tab:hover {
+      background: rgba(139, 92, 246, 0.15);
+      color: #e9d5ff;
+      border-color: rgba(139, 92, 246, 0.4);
+    }
+
+    .role-tab.active {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.25) 0%, rgba(99, 102, 241, 0.25) 100%);
+      color: #fff;
+      border-color: var(--accent-purple);
+      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+    }
+
+    .role-tab .tab-count {
+      font-size: 0.75rem;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2px 6px;
+      border-radius: 6px;
+      color: #a78bfa;
+    }
+
+    /* Selected Role Header Banner */
+    .active-role-banner {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .banner-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .banner-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .track-pill {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+    .track-pill.Agile { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+    .track-pill.AI { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+
+    .scenario-section {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 28px;
+    }
+
+    .search-filter-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .input-field {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--card-border);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      outline: none;
+    }
+    .input-field:focus { border-color: var(--accent-purple); }
+
+    .scenario-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .scenario-item {
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 24px;
+      transition: all 0.2s;
+    }
+
+    .scenario-meta {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .sc-id { font-family: 'Fira Code', monospace; font-size: 0.8rem; color: #c084fc; font-weight: 600; }
+    .sc-diff { font-size: 0.75rem; background: rgba(245, 158, 11, 0.2); color: #fbbf24; padding: 2px 8px; border-radius: 6px; }
+
+    .sc-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; color: #fff; }
+    .sc-context { font-size: 0.9rem; color: #cbd5e1; margin-bottom: 12px; }
+    .sc-dilemma {
+      background: rgba(139, 92, 246, 0.1);
+      border-left: 3px solid var(--accent-purple);
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.875rem;
+      color: #e9d5ff;
+      margin-bottom: 16px;
+    }
+
+    .btn-hint {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #fcd34d;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-hint:hover { background: rgba(245, 158, 11, 0.25); }
+
+    .hint-box {
+      display: none;
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px dashed rgba(245, 158, 11, 0.4);
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 16px;
+      font-size: 0.85rem;
+      color: #fef08a;
+    }
+    .hint-box.active { display: block; }
+
+    .ans-area {
+      width: 100%;
+      min-height: 120px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      color: #fff;
+      padding: 12px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      resize: vertical;
+      margin-bottom: 12px;
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+      color: #fff;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s;
+    }
+
+    .btn-submit:hover { transform: scale(1.02); }
+
+    .eval-modal {
+      display: none;
+      margin-top: 16px;
+      background: rgba(30, 41, 59, 0.9);
+      border: 1px solid var(--accent-purple);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .eval-modal.active { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    .score-badge {
+      display: inline-block;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #34d399;
+      margin-bottom: 12px;
+    }
+
+    .star-checklist {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .star-item {
+      background: rgba(15, 23, 42, 0.6);
+      padding: 8px;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .star-item.pass { border: 1px solid #10b981; color: #34d399; }
+    .star-item.fail { border: 1px solid #ef4444; color: #f87171; }
+
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .solution-card {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .solution-title {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #38bdf8;
+      margin-bottom: 6px;
+    }
+
+    /* Pagination controls */
+    .pagination-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 1px solid var(--card-border);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .page-btn-group {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .page-num-btn {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .page-num-btn.active, .page-num-btn:hover {
+      background: var(--accent-purple);
+      color: #fff;
+      border-color: var(--accent-purple);
+    }
+
+    .page-num-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <span>🚀 Interview Mastery Simulator</span>
+      <span class="logo-badge">Enterprise Edition</span>
+    </div>
+    <div style="font-size: 0.85rem; color: var(--text-muted);">
+      8 Roles • 800+ Unique Scenarios • 3 Alternate Solutions
+    </div>
+  </header>
+
+  <div class="container">
+    
+    <!-- Agile Leadership Role Tabs -->
+    <div class="track-section-label">⚡ Agile Transformation Roles</div>
+    <div class="role-tabs-bar" id="agile-role-tabs"></div>
+
+    <!-- AI Leadership Role Tabs -->
+    <div class="track-section-label">🤖 AI Leadership & Architecture Roles</div>
+    <div class="role-tabs-bar" id="ai-role-tabs"></div>
+
+    <!-- Active Role Header Banner -->
+    <div class="active-role-banner" id="active-role-banner"></div>
+
+    <!-- Scenario Explorer & Practice Section -->
+    <div class="scenario-section">
+      <div class="search-filter-bar">
+        <input type="text" class="input-field" id="search-input" placeholder="Search active role scenarios (e.g. RAG, PI Planning, WSJF)..." oninput="resetPageAndLoad()" style="flex: 1; min-width: 200px;">
+        <select class="input-field" id="diff-filter" onchange="resetPageAndLoad()">
+          <option value="">All Difficulties</option>
+          <option value="Mid">Mid Level</option>
+          <option value="Senior">Senior Level</option>
+          <option value="Principal">Principal / Executive</option>
+        </select>
+        <select class="input-field" id="page-size-select" onchange="resetPageAndLoad()">
+          <option value="20">20 Scenarios per page</option>
+          <option value="10">10 Scenarios per page</option>
+          <option value="50">50 Scenarios per page</option>
+        </select>
+      </div>
+
+      <div class="scenario-list" id="scenario-list">
+        <div style="text-align: center; color: var(--text-muted); padding: 40px;">
+          Loading scenarios...
+        </div>
+      </div>
+
+      <!-- Pagination Component -->
+      <div class="pagination-bar" id="pagination-bar"></div>
+    </div>
+
+  </div>
+
+  <script>
+    let currentRoleId = 'agile_coach';
+    let allRoles = [];
+    let currentPage = 1;
+    let totalItems = 100;
+    let limit = 20;
+
+    async function init() {
+      try {
+        const res = await fetch('/api/v1/roles');
+        allRoles = await res.json();
+        renderRoleTabs();
+        selectRole('agile_coach');
+      } catch (err) {
+        console.error("Failed to fetch roles:", err);
+      }
+    }
+
+    function renderRoleTabs() {
+      const agileContainer = document.getElementById('agile-role-tabs');
+      const aiContainer = document.getElementById('ai-role-tabs');
+      
+      agileContainer.innerHTML = '';
+      aiContainer.innerHTML = '';
+
+      allRoles.forEach(r => {
+        const isActive = r.id === currentRoleId;
+        const tabHtml = `
+          <button class="role-tab ${isActive ? 'active' : ''}" onclick="selectRole('${r.id}')">
+            <span>${r.icon}</span>
+            <span>${r.title}</span>
+            <span class="tab-count">${r.count}</span>
+          </button>
+        `;
+        
+        if (r.track === 'Agile') {
+          agileContainer.innerHTML += tabHtml;
+        } else {
+          aiContainer.innerHTML += tabHtml;
+        }
+      });
+    }
+
+    function selectRole(roleId) {
+      currentRoleId = roleId;
+      currentPage = 1;
+      renderRoleTabs();
+      
+      const roleObj = allRoles.find(r => r.id === roleId);
+      if (roleObj) {
+        document.getElementById('active-role-banner').innerHTML = `
+          <div>
+            <div class="banner-title">
+              <span>${roleObj.icon}</span>
+              <span>${roleObj.title} Scenario Mastery</span>
+              <span class="track-pill ${roleObj.track}">${roleObj.track} Track</span>
+            </div>
+            <div class="banner-desc">${roleObj.description}</div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 1.5rem; font-weight: 800; color: #a78bfa;">${roleObj.count}+</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Unique Scenarios</div>
+          </div>
+        `;
+      }
+      loadScenarios();
+    }
+
+    function resetPageAndLoad() {
+      currentPage = 1;
+      loadScenarios();
+    }
+
+    function goToPage(page) {
+      currentPage = page;
+      loadScenarios();
+      window.scrollTo({ top: document.querySelector('.scenario-section').offsetTop - 80, behavior: 'smooth' });
+    }
+
+    function toggleHint(scenarioId) {
+      const box = document.getElementById(`hint-${scenarioId}`);
+      box.classList.toggle('active');
+    }
+
+    async function loadScenarios() {
+      const search = document.getElementById('search-input').value;
+      const diff = document.getElementById('diff-filter').value;
+      limit = parseInt(document.getElementById('page-size-select').value) || 20;
+      
+      const offset = (currentPage - 1) * limit;
+      let url = `/api/v1/scenarios?role=${currentRoleId}&limit=${limit}&offset=${offset}`;
+      if (diff) url += `&difficulty=${diff}`;
+      
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        
+        let list = data.scenarios || [];
+        totalItems = data.total || 100;
+
+        if (search) {
+          list = list.filter(s => s.title.toLowerCase().includes(search.toLowerCase()) || s.context.toLowerCase().includes(search.toLowerCase()));
+        }
+        
+        renderScenarioList(list);
+        renderPagination(totalItems, limit);
+      } catch (err) {
+        console.error("Failed to load scenarios:", err);
+      }
+    }
+
+    function renderPagination(total, pageSize) {
+      const totalPages = Math.ceil(total / pageSize);
+      const bar = document.getElementById('pagination-bar');
+      if (totalPages <= 1) {
+        bar.innerHTML = '';
+        return;
+      }
+
+      const startIdx = (currentPage - 1) * pageSize + 1;
+      const endIdx = Math.min(currentPage * pageSize, total);
+
+      let pageButtonsHtml = '';
+      for (let i = 1; i <= totalPages; i++) {
+        pageButtonsHtml += `
+          <button class="page-num-btn ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">
+            Page ${i} (${(i - 1) * pageSize + 1}-${Math.min(i * pageSize, total)})
+          </button>
+        `;
+      }
+
+      bar.innerHTML = `
+        <div style="font-size: 0.85rem; color: var(--text-muted);">
+          Showing Questions <strong>${startIdx} - ${endIdx}</strong> of <strong>${total}</strong> Total
+        </div>
+        <div class="page-btn-group">
+          <button class="page-num-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="goToPage(${currentPage - 1})">◀ Prev</button>
+          ${pageButtonsHtml}
+          <button class="page-num-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="goToPage(${currentPage + 1})">Next ▶</button>
+        </div>
+      `;
+    }
+
+    function renderScenarioList(scenarios) {
+      const container = document.getElementById('scenario-list');
+      if (scenarios.length === 0) {
+        container.innerHTML = `<div style="text-align: center; color: var(--text-muted); padding: 30px;">No scenarios matched your filter criteria.</div>`;
+        return;
+      }
+
+      container.innerHTML = scenarios.map(s => `
+        <div class="scenario-item" id="item-${s.id}">
+          <div class="scenario-meta">
+            <span class="sc-id">${s.id}</span>
+            <span class="sc-diff">${s.difficulty}</span>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">${s.domain}</span>
+          </div>
+          <div class="sc-title">${s.title}</div>
+          <div class="sc-context">${s.context}</div>
+          <div class="sc-dilemma"><strong>⚡ Scenario Dilemma:</strong> ${s.dilemma}</div>
+
+          <button class="btn-hint" onclick="toggleHint('${s.id}')">💡 Reveal Strategic Hints</button>
+
+          <div class="hint-box" id="hint-${s.id}">
+            <strong style="color: #fbbf24;">Interview Hints & Strategic Pointers:</strong>
+            <ul style="padding-left: 20px; margin-top: 6px;">
+              ${(s.hints || []).map(h => `<li>${h}</li>`).join('')}
+            </ul>
+          </div>
+
+          <textarea class="ans-area" id="ans-${s.id}" placeholder="Formulate your STAR response (Situation, Task, Action, Result) addressing key trade-offs and rubrics..."></textarea>
+
+          <button class="btn-submit" onclick="evaluateAnswer('${s.id}')">Submit for STAR & Rubric Evaluation</button>
+
+          <div class="eval-modal" id="eval-${s.id}"></div>
+        </div>
+      `).join('');
+    }
+
+    async function evaluateAnswer(scenarioId) {
+      const userText = document.getElementById(`ans-${scenarioId}`).value;
+      const evalBox = document.getElementById(`eval-${scenarioId}`);
+
+      if (!userText.trim()) {
+        alert("Please write your STAR interview response before submitting.");
+        return;
+      }
+
+      evalBox.innerHTML = `<div style="color: #a78bfa;">Evaluating your STAR answer against enterprise rubrics...</div>`;
+      evalBox.classList.add('active');
+
+      try {
+        const res = await fetch('/api/v1/evaluate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ scenario_id: scenarioId, user_response: userText })
+        });
+        const report = await res.json();
+
+        evalBox.innerHTML = `
+          <div class="score-badge">Readiness Score: ${report.overall_score}%</div>
+          <div style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 14px;">${report.feedback_summary}</div>
+
+          <div class="star-checklist">
+            <div class="star-item ${report.star_alignment.situation_covered ? 'pass' : 'fail'}">S - Situation</div>
+            <div class="star-item ${report.star_alignment.task_covered ? 'pass' : 'fail'}">T - Task</div>
+            <div class="star-item ${report.star_alignment.action_covered ? 'pass' : 'fail'}">A - Action</div>
+            <div class="star-item ${report.star_alignment.result_covered ? 'pass' : 'fail'}">R - Result</div>
+          </div>
+
+          <div style="margin-bottom: 12px;">
+            <strong style="color: #c084fc;">Matched Key Points:</strong>
+            <ul style="padding-left: 20px; font-size: 0.85rem; color: #34d399;">
+              ${report.key_points_matched.map(p => `<li>${p}</li>`).join('') || '<li>None matched</li>'}
+            </ul>
+          </div>
+
+          ${report.missed_key_points.length ? `
+            <div style="margin-bottom: 12px;">
+              <strong style="color: #f87171;">Missed Key Rubrics:</strong>
+              <ul style="padding-left: 20px; font-size: 0.85rem; color: #fca5a5;">
+                ${report.missed_key_points.map(p => `<li>${p}</li>`).join('')}
+              </ul>
+            </div>
+          ` : ''}
+
+          <!-- Multiple Alternate Solution Pathways -->
+          <div style="margin-top: 18px; border-top: 1px solid var(--card-border); padding-top: 14px;">
+            <strong style="color: #38bdf8; font-size: 1rem;">🔀 3 Alternate Solution Pathways (Strategic Trade-off Analysis):</strong>
+            <div class="solutions-grid">
+              ${(report.alternative_solutions || []).map(sol => `
+                <div class="solution-card">
+                  <div class="solution-title">${sol.approach_name}</div>
+                  <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 6px;"><strong>Focus:</strong> ${sol.focus}</div>
+                  <div style="font-size: 0.8rem; color: #a78bfa; margin-bottom: 4px;"><strong>Pros:</strong> ${sol.pros}</div>
+                  <div style="font-size: 0.8rem; color: #fca5a5;"><strong>Trade-offs:</strong> ${sol.trade_offs}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Gold Standard STAR Model Answer -->
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 14px; border-radius: 10px; margin-top: 16px;">
+            <strong style="color: #60a5fa;">💡 Gold-Standard Primary Model Answer (STAR):</strong>
+            <div style="font-size: 0.85rem; color: #cbd5e1; margin-top: 6px;">
+              <p><strong>Situation:</strong> ${report.star_model_answer.situation}</p>
+              <p><strong>Task:</strong> ${report.star_model_answer.task}</p>
+              <p><strong>Action:</strong> ${report.star_model_answer.action}</p>
+              <p><strong>Result:</strong> ${report.star_model_answer.result}</p>
+            </div>
+          </div>
+        `;
+      } catch (err) {
+        evalBox.innerHTML = `<div style="color: #f87171;">Evaluation error: ${err.message}</div>`;
+      }
+    }
+
+    window.onload = init;
+  </script>
+</body>
+</html>

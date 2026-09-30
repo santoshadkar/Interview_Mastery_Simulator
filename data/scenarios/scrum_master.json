@@ -1,0 +1,44 @@
+[
+  {
+    "id": "SM-001",
+    "role_id": "scrum_master",
+    "role_name": "Scrum Master",
+    "domain": "Team Dynamics & Toxic Conflict Resolution",
+    "difficulty": "Mid / Senior",
+    "title": "Senior Developer Overriding Junior Team Members in Daily Standups",
+    "context": "A brilliant but dominant Tech Lead consistently interrupts junior team members, dismisses their code review feedback, and takes over all architectural tasks, causing junior devs to stop contributing in retrospectives.",
+    "dilemma": "How do you coach the Tech Lead and empower the team without creating a toxic rift?",
+    "eval_rubric": {
+      "key_competencies": ["Servant Leadership", "Conflict Resolution", "Psychological Safety", "Retrospective Facilitation"],
+      "must_include": ["1-on-1 private coaching with Tech Lead", "Establishing team working agreements", "Rotating facilitation / pair programming"],
+      "common_pitfalls": ["Reprimanding the Tech Lead publicly in standup", "Ignoring the junior devs' silence"]
+    },
+    "star_model_answer": {
+      "situation": "A dominant Tech Lead was silencing junior developers and monopolizing architectural tasks.",
+      "task": "As Scrum Master, rebuild psychological safety and balance team collaboration.",
+      "action": "I held a private 1-on-1 coaching session with the Tech Lead using the SBI (Situation-Behavior-Impact) model to build awareness. I then facilitated a Working Agreement retrospective where the team collectively established rules for inclusive PR reviews and pair programming.",
+      "result": "Junior devs actively spoke up in standups, PR review engagement increased by 40%, and the Tech Lead stepped into a mentoring role."
+    }
+  },
+  {
+    "id": "SM-002",
+    "role_id": "scrum_master",
+    "role_name": "Scrum Master",
+    "domain": "Impediment Removal & Cross-Functional Bottlenecks",
+    "difficulty": "Mid",
+    "title": "QA Testing Bottleneck Bottling Up Delivery at the End of Every Sprint",
+    "context": "Developers finish coding 80% of stories on Day 8 of a 10-day sprint. QA engineers are flooded with testing work on Days 9 and 10, resulting in untested stories rolling over every sprint.",
+    "dilemma": "How do you break the waterfall-in-a-sprint pattern and foster cross-functional testing responsibility?",
+    "eval_rubric": {
+      "key_competencies": ["Swarming Techniques", "Test-Driven Development (TDD)", "WIP Limits", "Sprint Flow"],
+      "must_include": ["Swarming on stories", "Automated regression testing", "Dev-QA pairing early in sprint"],
+      "common_pitfalls": ["Adding more QA resources without fixing workflow", "Extending sprint duration"]
+    },
+    "star_model_answer": {
+      "situation": "The team experienced mini-waterfalls every sprint, dumping all QA testing onto the final 2 days.",
+      "task": "Coach the team to smooth out flow and distribute testing throughout the sprint.",
+      "action": "I introduced WIP limits of 2 stories in 'In Testing' at a time. I facilitated Dev-QA pairing where devs wrote unit & integration tests before handing over features, and encouraged devs to help swarm on manual testing when QA was blocked.",
+      "result": "Sprint rollover dropped from 35% to under 5%, and story completion velocity smoothed evenly across the 10 days."
+    }
+  }
+]

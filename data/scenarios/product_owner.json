@@ -1,0 +1,44 @@
+[
+  {
+    "id": "PO-001",
+    "role_id": "product_owner",
+    "role_name": "Product Owner",
+    "domain": "Prioritization & Stakeholder Conflict",
+    "difficulty": "Senior",
+    "title": "Handling Executive Feature Mandates vs High Technical Debt",
+    "context": "The VP of Sales demands an unannounced custom enterprise feature for an upcoming deal. Simultaneously, the Tech Lead warns that the payment engine will crash if legacy database refactoring is delayed another sprint.",
+    "dilemma": "How do you balance short-term revenue generation against system stability and technical debt?",
+    "eval_rubric": {
+      "key_competencies": ["WSJF / Weighted Shortest Job First", "Technical Debt Governance", "Stakeholder Negotiation", "Value Maximization"],
+      "must_include": ["Quantifying Cost of Delay", "Slicing feature into MVP phase 1", "Allocating tech debt capacity budget (e.g., 20% rule)"],
+      "common_pitfalls": ["Yielding completely to Sales and ignoring tech debt", "Refusing Sales demand outright without compromise"]
+    },
+    "star_model_answer": {
+      "situation": "VP of Sales demanded an urgent feature while Tech Lead flagged severe payment gateway database degradation.",
+      "task": "As PO, I had to negotiate a backlog allocation that satisfied commercial deadlines without risking production downtime.",
+      "action": "I calculated the Cost of Delay using WSJF. I worked with the team to slice the requested sales feature into a lightweight MVP for contract signing, while dedicating 30% of sprint capacity to essential DB migration.",
+      "result": "The sales deal closed successfully with the MVP feature, and the database refactoring prevented a projected 99.9% downtime breach."
+    }
+  },
+  {
+    "id": "PO-002",
+    "role_id": "product_owner",
+    "role_name": "Product Owner",
+    "domain": "User Story Splitting & Acceptance Criteria",
+    "difficulty": "Mid / Senior",
+    "title": "Splitting a Complex Multi-Month AI Workflow into Deliverable Increments",
+    "context": "The business requests an automated document processing feature using LLMs. The initial epic estimation is 40 story points, spans 4 sprints, and cannot be tested until all components are finished.",
+    "dilemma": "How do you split this complex AI story into small, valuable, testable user stories with explicit Given/When/Then acceptance criteria?",
+    "eval_rubric": {
+      "key_competencies": ["INVEST Criteria", "Story Splitting (SPIDR method)", "Behavior Driven Development (BDD)", "Customer Feedback Loops"],
+      "must_include": ["Given/When/Then Acceptance Criteria", "Thin horizontal slice (e.g. mock pipeline -> standard extract -> fallback)", "Measurable business outcome"],
+      "common_pitfalls": ["Splitting vertically by architectural layers (DB story, UI story, API story)", "Leaving stories un-testable"]
+    },
+    "star_model_answer": {
+      "situation": "An AI document parsing epic was estimated at 40 points and blocked for 4 sprints.",
+      "task": "Decompose the epic into thin, testable user stories adhering to BDD and INVEST principles.",
+      "action": "Using the SPIDR splitting method, I broke the epic into 4 thin vertical slices: Story 1 (Static PDF extract + manual verify), Story 2 (LLM parser for standard invoices), Story 3 (Confidence score threshold & fallback UI). Drafted clear Given/When/Then criteria for each.",
+      "result": "The team delivered working value in Sprint 1, gathering early user feedback and reducing overall epic risk."
+    }
+  }
+]

@@ -1,0 +1,65 @@
+[
+  {
+    "id": "AC-001",
+    "role_id": "agile_coach",
+    "role_name": "Agile Coach",
+    "domain": "Enterprise Scaling & Framework Transition (SAFe / LeSS / Kanban)",
+    "difficulty": "Senior / Principal",
+    "title": "Resistance to SAFe ART Launch from Traditional Engineering VPs",
+    "context": "An enterprise financial institution is launching its first Agile Release Train (ART). A traditional VP of Engineering refuses to allow their component leads to participate in PI Planning, claiming PI Planning is a 'waste of 2 full days of developer output'.",
+    "dilemma": "How do you gain VP buy-in without sacrificing the core SAFe PI Planning cadence or forcing a compliance-driven mandate?",
+    "eval_rubric": {
+      "key_competencies": ["Executive Coaching", "Empathy & Value Alignment", "SAFe Governance", "Change Management"],
+      "must_include": ["One-on-one executive alignment session", "Demonstrating cost of delay & dependency risks", "Pilot observation option or metrics baseline"],
+      "common_pitfalls": ["Escalating directly to CEO without 1-on-1 dialogue", "Yielding and cancelling PI Planning"]
+    },
+    "star_model_answer": {
+      "situation": "During an enterprise SAFe transformation at a financial firm, a key Engineering VP refused to send leads to PI Planning.",
+      "task": "My task as Lead Agile Coach was to align the VP on the value of PI Planning while securing full team participation.",
+      "action": "I scheduled an executive briefing showcasing historical cross-team dependency delays that cost 6 weeks of rework. I reframed PI Planning as a risk-mitigation alignment event, offering to track engineering efficiency metrics post-PI.",
+      "result": "The VP agreed to observe Day 1 and participate in draft plan reviews. Post-PI planning, dependency hand-off tickets dropped by 40%, making the VP a vocal sponsor for future ARTs."
+    }
+  },
+  {
+    "id": "AC-002",
+    "role_id": "agile_coach",
+    "role_name": "Agile Coach",
+    "domain": "ScrumBan & Flow Optimization",
+    "difficulty": "Senior",
+    "title": "Choosing Between Pure Scrum, Kanban, and ScrumBan for an Ops/Dev Hybrid Team",
+    "context": "A software company's Infrastructure & Cloud Engineering team is struggling with Scrum. Interruptions from live production incidents break sprint commitments every single sprint, causing low team morale.",
+    "dilemma": "The engineering director insists the team stay on 2-week Scrum sprints. How do you coach the leadership and team toward ScrumBan or Kanban?",
+    "eval_rubric": {
+      "key_competencies": ["Framework Selection", "Flow Metrics", "ScrumBan Design", "Agile Agnosticism"],
+      "must_include": ["WIP (Work In Progress) limits", "Class of Service / Expedite Lane", "Flow Metrics (Cycle Time, Throughput)", "ScrumBan hybrid transition strategy"],
+      "common_pitfalls": ["Forcing Scrum on unplanned operational work", "Abandoning retrospectives or daily standups completely"]
+    },
+    "star_model_answer": {
+      "situation": "An Infra Ops team was failing 80% of sprint goals due to unplanned production incident spikes.",
+      "task": "As Agile Coach, I needed to transition the team to a flow-based ScrumBan model.",
+      "action": "I presented historical incident metrics showing 45% of capacity was reactive. I coached the director to adopt ScrumBan: keeping daily standups and retrospectives while introducing explicit WIP limits, an Expedite lane for Sev-1 incidents, and Kanban flow metrics.",
+      "result": "Sprint commit-vs-actual friction dropped to zero. Cycle time improved by 35%, and unplanned work was handled systematically."
+    }
+  },
+  {
+    "id": "AC-003",
+    "role_id": "agile_coach",
+    "role_name": "Agile Coach",
+    "domain": "LeSS & Nexus Multi-Team Coordination",
+    "difficulty": "Principal",
+    "title": "Decoupling Shared Architecture Dependencies across 15 Feature Teams",
+    "context": "A telecom platform has 15 teams working on a single product backlog. Integration bugs spike at release time because teams modify shared monolithic components independently.",
+    "dilemma": "How do you coach the engineering organization to adopt LeSS / Nexus integration practices without creating heavy release manager bottlenecks?",
+    "eval_rubric": {
+      "key_competencies": ["Large Scale Scrum (LeSS)", "Nexus Integration Team", "Continuous Integration Architecture", "Systemic Coaching"],
+      "must_include": ["Nexus Integration Team / LeSS Joint Sprint Planning", "Trunk-Based Development & CI/CD automation", "Feature-centric team topology"],
+      "common_pitfalls": ["Reverting to traditional change control boards", "Creating permanent component silos"]
+    },
+    "star_model_answer": {
+      "situation": "15 feature teams working on a monolithic core suffered 3-week release freeze periods due to integration chaos.",
+      "task": "Coach the enterprise towards Large Scale Scrum (LeSS) / Nexus integration governance.",
+      "action": "I facilitated the formation of a cross-cutting Integration Guild, introduced automated contract testing in CI/CD, and established Joint Sprint Reviews across feature teams.",
+      "result": "Integration defect rates dropped by 65%, and release frequency increased from quarterly to bi-weekly."
+    }
+  }
+]
